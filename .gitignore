@@ -1,0 +1,16 @@
+.DS_Store
+# Dependencies
+node_modules
+
+# npm error logs
+package-error.log
+
+# Build Folder
+dist
+
+# Env Files
+.env*
+!.env*.sample
+
+# logging
+*-audit.json

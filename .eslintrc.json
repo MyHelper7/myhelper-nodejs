@@ -1,0 +1,35 @@
+// "off" or 0
+// "warn" or 1
+// "error" or 2
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "prettier",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "ignorePatterns": ["dist/**/*.js", "**/*.js"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "max-len": ["error", { "code": 150 }],
+        "no-console": "off",
+        "func-names": "off",
+        "no-underscore-dangle": "off",
+        "consistent-return": "off",
+        "indent": ["error", 2],
+        "jest/expect-expect": "off",
+        "security/detect-object-injection": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+    }
+}

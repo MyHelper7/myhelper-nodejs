@@ -1,0 +1,88 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        stack:
+          type: string
+        message:
+          type: string
+
+  responses:
+    InternalServerError:
+      description: Something has gone wrong on the website's server, but the server could not be more specific on what that exact problem is.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+            stack: Required Stack will appear here
+    DatabaseError:
+      description: Something has gone wrong with database
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Database Error
+            stack: Required Stack will appear here
+
+    BadRequestError:
+      description: The request the client made is incorrect or corrupt, and the server can't understand it
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: The request the client made is incorrect or corrupt, and the server can't understand it
+            stack: Required Stack will appear here
+    RecordNotFoundError:
+      description: The Record does not exists on the server
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: The Record does not exists on the server
+            stack: Required Stack will appear here
+    ValidationError:
+      description: Validatiom Failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Validatiom Failed
+            stack: Required Stack will appear here
+    RouteNotFoundError:
+      description: Route does not exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Route does not exists
+            stack: Required Stack will appear here
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
