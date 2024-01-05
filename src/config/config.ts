@@ -23,6 +23,11 @@ const envVarsSchema = Joi.object()
 
     NOTIFY_SLACK: Joi.boolean().default(false),
     SLACK_ERROR_WEBHOOK: Joi.string().uri().description('Slack Error Webhook is required'),
+
+    JWT_ACCESS_PRIVATE_KEY: Joi.string().required().description('JWT access private key'),
+    JWT_ACCESS_PUBLIC_KEY: Joi.string().required().description('JWT access public key'),
+    JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('Minutes after which access tokens expire'),
+    JWT_ACCESS_ALGORITHM: Joi.string().required().description('JWT access algorithm'),
   })
   .unknown();
 
@@ -56,6 +61,19 @@ export const config = {
   SLACK : {
     NOTIFY: envVars.NOTIFY_SLACK,
     ERROR_WEBHOOK: envVars.SLACK_ERROR_WEBHOOK,
+  },
+
+  SALT: {
+    ACCOUNT: envVars.ACCOUNT_SALT,
+    RESET_PASSWORD: envVars.RESET_PASSWORD_SALT,
+    VERIFY_ACCOUNT: envVars.VERIFY_ACCOUNT_SALT,
+  },
+
+  JWT: {
+    ACCESS_PRIVATE_KEY: envVars.JWT_ACCESS_PRIVATE_KEY,
+    ACCESS_PUBLIC_KEY: envVars.JWT_ACCESS_PUBLIC_KEY,
+    ACCESS_EXPIRATION_MINUTES: envVars.JWT_ACCESS_EXPIRATION_MINUTES,
+    ACCESS_ALGORITHM: envVars.JWT_ACCESS_ALGORITHM,
   },
 };
 

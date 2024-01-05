@@ -3,7 +3,7 @@ import { logger } from '../config/logger';
 import { APICallError } from './custom-error';
 
 class RequestHandler {
-  public async request({ url, method, body = {} }) {
+  public async request({ url, method, body = {} }): Promise<unknown> {
     try {
       logger.info(`Calling api: ${url}`);
       const response = await axios({

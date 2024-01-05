@@ -1,5 +1,5 @@
 import winston from 'winston';
-import DailyRotateFile = require("winston-daily-rotate-file");
+import DailyRotateFile = require('winston-daily-rotate-file');
 import { config } from './config';
 
 const timeFormat = 'YYYY-MM-DD hh:mm:ss.SSS A';
@@ -13,43 +13,48 @@ const enumerateErrorFormat = winston.format((info) => {
   return info;
 });
 
+function formatLogging(options) {
+  const { timestamp, level, message, requestId, stack } = options;
+  const json = { timestamp, level: level.trim(), message: message.trim(), requestId, stack };
+
+  let format = `[${timestamp}]:`;
+  format += requestId ? `${requestId} ` : '';
+  format += `${level}: ${message?.trim()}`;
+
+  return { json, message: format };
+}
+
 const fileTransportConfig = {
   datePattern: 'YYYY-MM-DD',
   maxFiles: '14d',
   format: combine(
     enumerateErrorFormat(),
     timestamp({ format: timeFormat }),
-    printf(({ level, message }) => {
-      const requestId = process?.['requestId'] || '-';
-      return JSON.stringify({level: level.trim(), requestId, message: message?.trim()});
-    }),
+    printf((options) => JSON.stringify(formatLogging(options).json)),
   ),
 }
 
 export const logger = winston.createLogger({
   level: 'info',
-  format: combine(
-    enumerateErrorFormat(),
-    winston.format.colorize(),
-    timestamp({ format: timeFormat }),
-    align(),
-    printf(({ timestamp, level, message }) => {
-      const requestId = process?.['requestId'] || '-';
-      return `[${timestamp}]:${requestId} ${level}: ${message?.trim()}`;
-    }),
-  ),
   transports: [
     new winston.transports.Console({
       stderrLevels: ['error'],
+      format: combine(
+        enumerateErrorFormat(),
+        winston.format.colorize(),
+        timestamp({ format: timeFormat }),
+        align(),
+        printf((options) => formatLogging(options).message)
+      ),
     }),
     ...(config.FILE_LOGGING ? [
       new DailyRotateFile({
         ...fileTransportConfig,
-        filename: 'combined-%DATE%.json',
+        filename: 'combined-%DATE%-logs.json',
       }),
       new DailyRotateFile({
         ...fileTransportConfig,
-        filename: 'info-%DATE%.json',
+        filename: 'info-%DATE%-logs.json',
         level: 'info',
       }),
       new DailyRotateFile({

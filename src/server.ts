@@ -6,7 +6,7 @@ import { fileSystem } from './utils';
 
 
 database.authenticate().then(() => {
-  logger.info(`Database Connected`);
+  logger.info('Database Connected');
 
   app.listen(config.SERVER.PORT, () => {
     logger.info(`Started listening to: ${config.SERVER.URL}`);

@@ -3,5 +3,5 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 export async function loadEnvVariables() {
-  dotenv.config({ path: path.join(__dirname, `../.env`) });
+  dotenv.config({ path: path.join(__dirname, '../.env') });
 }

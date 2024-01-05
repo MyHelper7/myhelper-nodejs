@@ -37,7 +37,7 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/api/v1', requestLogger, appV1Route);
 
 // send back a 404 error for any unknown api request
-app.use('**', requestLogger, (req: Request, res: Response, next: NextFunction) => {
+app.use('**', requestLogger, (_req: Request, _res: Response, next: NextFunction) => {
   next(new RouteNotFoundError());
 });
 

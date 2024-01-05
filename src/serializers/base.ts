@@ -1,5 +1,3 @@
-export class BaseSerializer {
-  get serialize() {
-    return this;
-  }
+export interface BaseSerializer {
+  serialize(): any;
 }

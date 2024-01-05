@@ -1,10 +1,12 @@
-import { Request, Response } from 'express';
+import { IRequest, IResponse } from '../types';
 import { HTTP_STATUS } from '../constants';
+import { appHelper } from '../helpers';
 
 export const successResponse = function(
-  _: Request,
-  res: Response,
-  data: unknown,
-  statusCode: number = HTTP_STATUS.OK) {
-  return res.status(statusCode).send(data);
+  _req: IRequest,
+  res: IResponse,
+  data: any,
+  options: any = {}) {
+  const { statusCode = HTTP_STATUS.OK, snakeCase = true } = options;
+  return res.status(statusCode).send(snakeCase ? appHelper.convertKeysToSnakeCase(data) : data);
 };

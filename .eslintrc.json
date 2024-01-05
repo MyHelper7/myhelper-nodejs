@@ -22,6 +22,7 @@
     ],
     "rules": {
         "max-len": ["error", { "code": 150 }],
+        "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
         "no-console": "off",
         "func-names": "off",
         "no-underscore-dangle": "off",

@@ -14,3 +14,4 @@ dist
 
 # logging
 *-audit.json
+*-logs.json
