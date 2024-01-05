@@ -46,9 +46,8 @@ class AuthService {
   }
 
   public async resetPassword(payload: IResetPasswordPayload) {
-    if (payload.newPassword != payload.confirmPassword) {
-      throw new ValidationError('Password not same');
-    }
+    if (payload.newPassword != payload.confirmPassword) throw new ValidationError('Password not same');
+
     let user;
     try {
       user = await userDAL.findOne({ resetPasswordHash: payload.resetId });

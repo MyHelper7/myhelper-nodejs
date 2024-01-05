@@ -87,9 +87,7 @@ export class User extends Model<IUser, IUserInput> implements IUser {
   }
 
   public async updatePassword(newPassword: string, confirmPassword: string) {
-    if (newPassword != confirmPassword) {
-      throw new ValidationError('Password not match');
-    }
+    if (newPassword != confirmPassword) throw new ValidationError('Password not match');
 
     this.password = await User.hashPassword(newPassword);
     await this.save();

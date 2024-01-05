@@ -31,16 +31,15 @@ class TokenService {
 
   private verifyToken(token: string, type: string, secret: string, { algorithm = 'sha256' }) {
     const decodedToken = this.verify(token, secret, { algorithm });
-    if (decodedToken?.['type'] !== type) {
-      throw new BadRequestError('Type mismatch');
-    }
+    if (decodedToken?.['type'] !== type) throw new BadRequestError('Type mismatch');
+
     return decodedToken;
   }
 
   public generateAccessToken(user: User) {
     const { ACCESS_PRIVATE_KEY, ACCESS_EXPIRATION_MINUTES, ACCESS_ALGORITHM } = config.JWT;
 
-    return this.generateToken({ sub: user.id }, TOKEN_TYPE.ACCESS, ACCESS_PRIVATE_KEY, {
+    return this.generateToken({ sub: user.id, role: user.role }, TOKEN_TYPE.ACCESS, ACCESS_PRIVATE_KEY, {
       expiresInMins: ACCESS_EXPIRATION_MINUTES,
       algorithm: ACCESS_ALGORITHM
     });

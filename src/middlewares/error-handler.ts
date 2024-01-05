@@ -42,7 +42,7 @@ class ErrorHandler {
         stack: stack,
       });
 
-      logger.error(error);
+      logger.error(JSON.stringify({...error, message: error.message, stack: error.stack}));
     }
   
     res.status(response.code).send(response);

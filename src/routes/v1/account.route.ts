@@ -40,10 +40,7 @@ accountRouter.route('/deactivate')
  *         content:
  *           application/json:
  *             schema:
- *              type: object
- *              properties:
- *                status:
- *                  type: boolean
+ *               $ref: '#/components/schemas/Account'
  *       "400":
  *         $ref: '#/components/responses/BadRequestError'
  *       "412":
@@ -82,10 +79,7 @@ accountRouter.route('/deactivate')
  *         content:
  *           application/json:
  *             schema:
- *              type: object
- *              properties:
- *                status:
- *                  type: boolean
+ *               $ref: '#/components/schemas/Account'
  *       "400":
  *         $ref: '#/components/responses/BadRequestError'
  *       "412":

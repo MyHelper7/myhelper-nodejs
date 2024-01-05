@@ -13,6 +13,11 @@ export const ERRORS = {
     CODE: HTTP_STATUS.INTERNAL_SERVER_ERROR,
     MESSAGE: 'Database Error'
   },
+  FIREBASE: {
+    KEY: 'firebase_error',
+    CODE: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+    MESSAGE: 'Firebase Error'
+  },
   API_CALL: {
     KEY: 'api_error',
     CODE: HTTP_STATUS.INTERNAL_SERVER_ERROR,

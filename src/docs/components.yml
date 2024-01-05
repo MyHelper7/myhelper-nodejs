@@ -1,11 +1,51 @@
 components:
   schemas:
-    User:
+    Account:
+      type: object
+      properties:
+        id:
+          type: number
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        email_verified:
+          type: boolean
+        phone_number:
+          type: string
+        phone_verified:
+          type: boolean
+        photo:
+          type: string
+        current_ip:
+          type: string
+        last_ip:
+          type: string
+        invite_code:
+          type: string
+        last_login_at:
+          type: string
+        current_login_at:
+          type: string
+        is_admin:
+          type: boolean
+
+    Template:
       type: object
       properties:
         id:
           type: string
         name:
+          type: string
+        content:
+          type: string
+        note:
+          type: string
+        created_at:
+          type: string
+        updated_at:
           type: string
 
     Error:

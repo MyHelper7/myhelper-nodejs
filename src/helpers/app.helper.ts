@@ -29,7 +29,7 @@ class AppHelper {
   public convertKeysToSnakeCase(input: object | string): object | string {
     if (typeof input === 'object' && input !== null) {
       if (Array.isArray(input)) {
-        return input.map(this.camelToSnake);
+        return input.map(val => this.convertKeysToSnakeCase(val));
       } else {
         const result = {};
         for (const [key, value] of Object.entries(input)) {
@@ -47,7 +47,7 @@ class AppHelper {
   public convertKeysToCamelCase(input: any): any {
     if (typeof input === 'object' && input !== null) {
       if (Array.isArray(input)) {
-        return input.map(this.snakeToCamelCase);
+        return input.map(val => this.convertKeysToCamelCase(val));
       } else {
         const result = {};
         for (const [key, value] of Object.entries(input)) {
@@ -103,9 +103,7 @@ class AppHelper {
     }
 
     for (const key in input) {
-      if (blackListKeys.indexOf(key) > -1) {
-        delete input[key];
-      }
+      if (blackListKeys.indexOf(key) > -1) delete input[key];
     }
 
     return input;

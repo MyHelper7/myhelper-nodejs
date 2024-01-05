@@ -4,6 +4,7 @@ import { config } from '../../config';
 import { authRouter } from './auth.route';
 import { accountRouter } from './account.route';
 import { requestParser } from '../../middlewares';
+import { adminRouter } from './admin.route';
 
 type TRoute = { path: string, route: Router };
 
@@ -17,6 +18,10 @@ const routes: TRoute[] = [
   {
     path: '/account',
     route: accountRouter,
+  },
+  {
+    path: '/admin',
+    route: adminRouter,
   },
 ];
 

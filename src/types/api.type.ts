@@ -11,3 +11,8 @@ export interface IResponse extends Response {
 }
 export interface INextFunction extends NextFunction {
 }
+
+export interface RecordList<T> {
+  records: T[],
+  nextPageToken?: string,
+}

@@ -28,6 +28,19 @@ const envVarsSchema = Joi.object()
     JWT_ACCESS_PUBLIC_KEY: Joi.string().required().description('JWT access public key'),
     JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('Minutes after which access tokens expire'),
     JWT_ACCESS_ALGORITHM: Joi.string().required().description('JWT access algorithm'),
+
+    FIREABSE_ADMIN_TYPE: Joi.string().required().description('Firebase admin type'),
+    FIREABSE_ADMIN_PROJECT_ID: Joi.string().required().description('Firebase admin project id'),
+    FIREABSE_ADMIN_PRIVATE_KEY_ID: Joi.string().required().description('Firebase admin private key id'),
+    FIREABSE_ADMIN_PRIVATE_KEY: Joi.string().required().description('Firebase admin private key'),
+    FIREABSE_ADMIN_CLIENT_EMAIL: Joi.string().required().description('Firebase admin client email'),
+    FIREABSE_ADMIN_CLIENT_ID: Joi.string().required().description('Firebase admin client id'),
+    FIREABSE_ADMIN_AUTH_URI: Joi.string().required().description('Firebase admin auth uri'),
+    FIREABSE_ADMIN_TOKEN_URI: Joi.string().required().description('Firebase admin token uri'),
+    FIREABSE_ADMIN_AUTH_CERT_URI: Joi.string().required().description('Firebase admin auth cert uri'),
+    FIREABSE_ADMIN_CLIENT_CERT_URI: Joi.string().required().description('Firebase admin client cert uri'),
+    FIREABSE_ADMIN_UNIVERSAL_DOMAIN: Joi.string().required().description('Firebase admin universal domain'),
+    FIREABSE_ADMIN_DATABASE_URI: Joi.string().required().description('Firebase admin database uri'),
   })
   .unknown();
 
@@ -75,5 +88,22 @@ export const config = {
     ACCESS_EXPIRATION_MINUTES: envVars.JWT_ACCESS_EXPIRATION_MINUTES,
     ACCESS_ALGORITHM: envVars.JWT_ACCESS_ALGORITHM,
   },
+
+  FIREBASE: {
+    ADMIN: {
+      TYPE: envVars.FIREABSE_ADMIN_TYPE,
+      PROJECT_ID: envVars.FIREABSE_ADMIN_PROJECT_ID,
+      PRIVATE_KEY_ID: envVars.FIREABSE_ADMIN_PRIVATE_KEY_ID,
+      PRIVATE_KEY: envVars.FIREABSE_ADMIN_PRIVATE_KEY,
+      CLIENT_EMAIL: envVars.FIREABSE_ADMIN_CLIENT_EMAIL,
+      CLIENT_ID: envVars.FIREABSE_ADMIN_CLIENT_ID,
+      AUTH_URI: envVars.FIREABSE_ADMIN_AUTH_URI,
+      TOKEN_URI: envVars.FIREABSE_ADMIN_TOKEN_URI,
+      AUTH_CERT_URL: envVars.FIREABSE_ADMIN_AUTH_CERT_URI,
+      CLIENT_CERT_URL: envVars.FIREABSE_ADMIN_CLIENT_CERT_URI,
+      UNIVERSAL_DOMAIN: envVars.FIREABSE_ADMIN_UNIVERSAL_DOMAIN,
+      DATABASE_URL: envVars.FIREABSE_ADMIN_DATABASE_URI,
+    }
+  }
 };
 

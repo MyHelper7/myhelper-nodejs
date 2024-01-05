@@ -79,3 +79,9 @@ export class DatabaseError extends BaseError {
     super(message || error?.message || '', error, ERRORS.DATABASE.KEY, ERRORS.DATABASE.CODE, true);
   }
 }
+
+export class FirebaseError extends BaseError {
+  constructor(message: string = ERRORS.FIREBASE.MESSAGE, error?: Error) {
+    super(message || error?.message || '', error, ERRORS.FIREBASE.KEY, ERRORS.FIREBASE.CODE, true);
+  }
+}

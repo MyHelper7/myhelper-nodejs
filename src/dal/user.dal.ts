@@ -25,9 +25,7 @@ class UserDAL {
     try {
       user = await this.findOne({ email, resetPasswordHash: null, resetPasswordSentAt: null });
       const isSame = await user.comparePassword(password, user.password);
-      if (!isSame) {
-        throw new BadRequestError('Password not match');
-      }
+      if (!isSame) throw new BadRequestError('Password not match');
     } catch (error) {
       throw new BadRequestError('Invalid Email or Password');
     }

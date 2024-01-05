@@ -102,10 +102,8 @@ authRouter.post('/reset-password', validate(authValidation.resetPassword), catch
  *             schema:
  *              type: object
  *              properties:
- *                access_token:
- *                  type: boolean
- *                refresh_token:
- *                  type: boolean
+ *                auth_token:
+ *                  type: string
  *       "400":
  *         $ref: '#/components/responses/BadRequestError'
  *       "412":
